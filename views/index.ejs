@@ -23,7 +23,7 @@
                   <% if (e.minggu_pertama == 0) { %>
                   <button
                     class="bayar btn btn-primary"
-                    data-minggu="minggu_pertama"
+                    data-minggu="minggu_pertama" onclick="return confirm('Anda Yakin?')"
                     data-id="<%= e._id %>"
                   >
                     Bayar
@@ -36,7 +36,7 @@
                   <% }else if(e.minggu_pertama == 1 && e.minggu_kedua == 0){ %>
                   <button
                     class="bayar btn btn-primary"
-                    data-minggu="minggu_kedua"
+                    data-minggu="minggu_kedua" onclick="return confirm('Anda Yakin?')"
                     data-id="<%= e._id %>"
                   >
                     Bayar
@@ -49,7 +49,7 @@
                   <% }else if(e.minggu_kedua == 1 && e.minggu_ketiga == 0){ %>
                   <button
                     class="bayar btn btn-primary"
-                    data-minggu="minggu_ketiga"
+                    data-minggu="minggu_ketiga" onclick="return confirm('Anda Yakin?')"
                     data-id="<%= e._id %>"
                   >
                     Bayar
@@ -64,7 +64,7 @@
                   <button
                     class="bayar btn btn-primary"
                     data-minggu="minggu_keempat"
-                    data-id="<%= e._id %>"
+                    data-id="<%= e._id %>" onclick="return confirm('Anda Yakin?')"
                   >
                     Bayar
                   </button>
@@ -75,7 +75,7 @@
             </tbody>
           </table>
           <form action="/s" method="post">
-            <button type="submit" class="btn btn-success" onclick="return confirm('Anda Yakin?')">Rekap Bulan Ini</button>
+            <button type="submit" class="btn btn-success">Rekap Bulan Ini</button>
             </form>
         </div>
       </div>
