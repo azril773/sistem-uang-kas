@@ -181,14 +181,22 @@ exports.ko = async (req, res) => {
   ws.column(2).setWidth(27);
 
   ws.cell(1, 1, 1, 6, true)
-    .string("Uang Kas XI PPLG 2")
+    .string(
+      `Laporan Uang Kas XI PPLG 2 Bulan ${
+        data.nama.charAt(0).toUpperCase() + data.nama.slice(1)
+      }`
+    )
     .style({
       font: { size: 20, bold: true },
       alignment: { horizontal: ["center"] },
     });
   ws.row(1).setHeight(26); // ws.cell(3, 1, 3, 6).number(1); // All 6 cells set to number 1
-  wb.write(`kas_${bulanNoww}.xlsx`);
-  res.download(`./kas_${bulanNoww}.xlsx`);
+  wb.write(
+    `kas_${data.nama.charAt(0).toUpperCase() + data.nama.slice(1)}.xlsx`
+  );
+  res.download(
+    `./kas_${data.nama.charAt(0).toUpperCase() + data.nama.slice(1)}.xlsx`
+  );
   // res.redirect("/");
 };
 // Add Worksheets to the workbook
