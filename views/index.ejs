@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body shadow" style="overflow-x: auto">
+          <table class="dataTable display table" width="100%">
+            <thead>
+              <tr>
+                <td>No</td>
+                <td>Nama</td>
+                <td>Minggu Pertama</td>
+                <td>Minggu Kedua</td>
+                <td>Minggu Ketiga</td>
+                <td>Minggu Keempat</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% let i = 1 %> <% data.informasi.forEach(e => { %>
+              <tr>
+                <td><%= i %></td>
+                <td><%= e.nama %></td>
+                <td>
+                  <!-- <form action="/bayar" method="post"> -->
+                  <% if (e.minggu_pertama == 0) { %>
+                  <button
+                    class="bayar btn btn-primary"
+                    data-minggu="minggu_pertama"
+                    data-id="<%= e._id %>"
+                  >
+                    Bayar
+                  </button>
+                  <% }else{ %> Sudah Bayar <% } %>
+                </td>
+                <td>
+                  <% if (e.minggu_pertama == 0) { %> Pembayaran Kedua <% }else
+                  if(e.minggu_pertama == 1 && e.minggu_kedua==1){ %> Sudah Bayar
+                  <% }else if(e.minggu_pertama == 1 && e.minggu_kedua == 0){ %>
+                  <button
+                    class="bayar btn btn-primary"
+                    data-minggu="minggu_kedua"
+                    data-id="<%= e._id %>"
+                  >
+                    Bayar
+                  </button>
+                  <% } %>
+                </td>
+                <td>
+                  <% if (e.minggu_kedua == 0) { %> Pembayaran Ketiga <% }else
+                  if(e.minggu_kedua == 1 && e.minggu_ketiga==1){ %> Sudah Bayar
+                  <% }else if(e.minggu_kedua == 1 && e.minggu_ketiga == 0){ %>
+                  <button
+                    class="bayar btn btn-primary"
+                    data-minggu="minggu_ketiga"
+                    data-id="<%= e._id %>"
+                  >
+                    Bayar
+                  </button>
+                  <% } %>
+                </td>
+                <td>
+                  <% if (e.minggu_ketiga == 0) { %> Pembayaran Keempat <% }else
+                  if(e.minggu_ketiga == 1 && e.minggu_keempat==1){ %> Sudah
+                  Bayar <% }else if(e.minggu_ketiga == 1 && e.minggu_keempat ==
+                  0){ %>
+                  <button
+                    class="bayar btn btn-primary"
+                    data-minggu="minggu_keempat"
+                    data-id="<%= e._id %>"
+                  >
+                    Bayar
+                  </button>
+                  <% } %>
+                </td>
+              </tr>
+              <% i++ %> <% }) %>
+            </tbody>
+          </table>
+          <form action="/s" method="post">
+            <button type="submit" class="btn btn-success">Rekap Bulan Ini</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(".bayar").click(function (e) {
+    $.ajax({
+      url: "/bayar",
+      method: "post",
+      data: { minggu: $(this).data("minggu"), id: $(this).data("id") },
+      success() {
+        window.location.reload();
+      },
+    });
+  });
+</script>
