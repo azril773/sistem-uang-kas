@@ -23,7 +23,7 @@
                   <% if (e.minggu_pertama == 0) { %>
                   <button
                     class="bayar btn btn-primary"
-                    data-minggu="minggu_pertama" onclick="return confirm('Anda Yakin?')"
+                    data-minggu="minggu_pertama"
                     data-id="<%= e._id %>"
                   >
                     Bayar
@@ -36,7 +36,7 @@
                   <% }else if(e.minggu_pertama == 1 && e.minggu_kedua == 0){ %>
                   <button
                     class="bayar btn btn-primary"
-                    data-minggu="minggu_kedua" onclick="return confirm('Anda Yakin?')"
+                    data-minggu="minggu_kedua"
                     data-id="<%= e._id %>"
                   >
                     Bayar
@@ -49,7 +49,7 @@
                   <% }else if(e.minggu_kedua == 1 && e.minggu_ketiga == 0){ %>
                   <button
                     class="bayar btn btn-primary"
-                    data-minggu="minggu_ketiga" onclick="return confirm('Anda Yakin?')"
+                    data-minggu="minggu_ketiga"
                     data-id="<%= e._id %>"
                   >
                     Bayar
@@ -64,7 +64,7 @@
                   <button
                     class="bayar btn btn-primary"
                     data-minggu="minggu_keempat"
-                    data-id="<%= e._id %>" onclick="return confirm('Anda Yakin?')"
+                    data-id="<%= e._id %>"
                   >
                     Bayar
                   </button>
@@ -84,13 +84,16 @@
 </div>
 <script>
   $(".bayar").click(function (e) {
-    $.ajax({
-      url: "/bayar",
-      method: "post",
-      data: { minggu: $(this).data("minggu"), id: $(this).data("id") },
-      success() {
-        window.location.reload();
-      },
-    });
+    const h = confirm("Anda Yakin?")
+    if(h){
+      $.ajax({
+        url: "/bayar",
+        method: "post",
+        data: { minggu: $(this).data("minggu"), id: $(this).data("id") },
+        success() {
+          window.location.reload();
+        },
+      });
+    }
   });
 </script>
