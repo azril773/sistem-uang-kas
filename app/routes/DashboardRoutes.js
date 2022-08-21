@@ -9,6 +9,6 @@ router.post("/bayar", dashboardController.bayar);
 
 router.post("/s", dashboardController.ko);
 
-router.get("/in", dashboardController.insert);
+// router.get("/in", dashboardController.insert);
 
 module.exports = router;
